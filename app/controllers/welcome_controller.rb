@@ -4,4 +4,8 @@ class WelcomeController < ApplicationController
               'Leta Jaskolski': "Before gCamp I was a disorderly slob. Now I'm more organized than I've   ever been.",
               'Lavern Upton': "Don't hesitate - sign up right now! You'll never be the same."}
   end
+
+  def tasks
+  end
+  
 end
