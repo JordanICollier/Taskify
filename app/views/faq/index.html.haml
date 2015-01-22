@@ -1,0 +1,16 @@
+.page-header
+  %h1 Frequently Asked Questions
+%ul
+  - @faqs.each do |question|
+    %li
+      = link_to question.question, "##{question.slug}"
+- @faqs.each do |question|
+  .row
+    .col-md-6
+      %a{name: question.slug}
+      %h3
+        = question.question
+      %p
+        = question.answer
+      %p
+        =link_to "top", "#top"
