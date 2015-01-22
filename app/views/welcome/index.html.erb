@@ -43,10 +43,11 @@
     </div>
   </div>
 
-  <p>&ldquo;gCamp has changed my life!  It&#39;s the best tool I&#39;ve ever used.&rdquo;</p>
-  <p class="text-muted"><em>&mdash; Cayla Hayes</em></p>
-  <p>&ldquo;Before gCamp I was a disorderly slob.  Now I&#39;m more organized than I&#39;ve ever been&rdquo;</p>
-  <p class="text-muted"><em>&mdash; Leta Jaskolski</em></p>
-  <p>&ldquo;Don&#39;t hesitate - sign up right now! You&#39;ll never be the same.&rdquo;</p>
-  <p class="text-muted"><em>&mdash; Lavern Upton</em></p>
+  <% @quotes.sort.each do |name, quote| %>
+<p><%= '"'+quote+'"' %></p>
+<p class="text-muted"><em>&mdash; <%= name %></em></p>
+  <% end %>
+</div>
+
+
   <hr>
