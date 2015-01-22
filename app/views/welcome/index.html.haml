@@ -1,0 +1,32 @@
+-# Main jumbotron for a primary marketing message or call to action
+.jumbotron
+  %h1 gCamp
+  %p Your life, organized.
+.row
+  .col-md-4
+    %p.lead
+      = image_tag "Pen_paper_task.jpg", class: "img-responsive"
+    .panel.panel-primary
+      .panel-heading Tasks
+      .panel-body.home-panel
+        %p Grouped by projects and lists, just the way you like'em
+  .col-md-4
+    %p.lead
+      = image_tag "Working_task.jpg", class: "img-responsive"
+    .panel.panel-primary
+      .panel-heading Tasks
+      .panel-body.home-panel
+        %p Grouped by projects and lists, just the way you like'em
+  .col-md-4
+    %p.lead
+      = image_tag "Tablet_task.jpg", class: "img-responsive"
+    .panel.panel-primary
+      .panel-heading Tasks
+      .panel-body.home-panel
+        %p Grouped by projects and lists, just the way you like'em
+- @quotes.sort.each do |name, quote|
+  %p= '"'+quote+'"'
+  %p.text-muted
+    %em
+      &mdash;
+      = name
