@@ -5,7 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+*gcamp
+
+* Ruby version 2.2.0
 
 * System dependencies
 
