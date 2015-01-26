@@ -21,13 +21,13 @@
     %footer
       .row
         .col-md-6
-          %a{:href => "about"} About
+          = link_to "About", about_path
           |
-          %a{:href => "terms"} Terms
+          = link_to "Terms", terms_path
           |
-          %a{:href => "faq"} FAQ
+          = link_to "Faq", faq_path
           |
-          %a{:href => "tasks"} Tasks
+          = link_to "Tasks", tasks_path
         .col-md-6.text-right
           %a{:href => "https://www.linkedin.com/in/jordanicollier"}
             = image_tag"linked.jpg", class: "img-footer"

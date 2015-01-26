@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
+<div class="page-header">
+  <div class="pull-right">
+    <a class="btn btn-info" href="/tasks/new">New Task </a>
+  </div>
+<h1>Tasks</h1>
+</div>
 
-<h1>Listing Tasks</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Description</th>
@@ -13,15 +17,17 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.description %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%= link_to task.description, task %>
+        </td>
+        <td class="text-right">
+        <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-info"  %>
+
+        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Task', new_task_path %>
