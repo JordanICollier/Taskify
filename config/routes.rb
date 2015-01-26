@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'terms' => 'terms#index'
 
-  get 'tasks' => 'welcome#tasks'
+  get 'tasks' => 'tasks#index'
 
 
   # Example of regular route:

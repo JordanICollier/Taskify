@@ -5,7 +5,5 @@ class WelcomeController < ApplicationController
               'Lavern Upton': "Don't hesitate - sign up right now! You'll never be the same."}
   end
 
-  def tasks
-  end
-  
+
 end
