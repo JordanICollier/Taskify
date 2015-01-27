@@ -9,3 +9,9 @@
   <li><a href="/tasks">Tasks</a></li>
   <li class="active"><%= @task.description %></li>
 </ol>
+
+<div>
+  <strong> Due on:
+  </strong>
+  <%= @task.due_date.to_s.gsub('-','/') %>
+</div>
