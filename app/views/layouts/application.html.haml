@@ -17,6 +17,15 @@
         = link_to 'gCamp', root_path, class: 'navbar-brand'
       #navbar.navbar-collapse.collapse
   .container
+    - flash.each do |type, message|
+      - if type == "notice"
+        %b
+          %center
+            .alert.alert-success= message
+      - elsif type == "alert"
+        %b
+          %center
+            .alert.alert-danger= message
     = yield
     %footer
       .row

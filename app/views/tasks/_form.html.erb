@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<% if @task.description != nil %>
+<% unless @task.description == nil %>
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
     <%= f.check_box(:complete) %> <b>Complete</b>
@@ -44,7 +44,7 @@
 
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
-    <%= f.submit 'Create Task', :class => 'btn btn-primary'%>
+    <%= f.submit @submit_name, :class => 'btn btn-primary'%>
     <%= link_to 'cancel', tasks_path, class: 'btn btn-default'%>
   </div>
 </div>
