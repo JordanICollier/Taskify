@@ -1,8 +1,8 @@
-<p id="notice" class="alert alert-success" ><%= notice %></p>
+<strong><p align="center" id="notice" class="alert alert-success" ><%= notice %></p></strong>
 
 <div class="page-header">
   <div class="pull-right  ">
-  <a class="btn btn-info" href="/tasks/23/edit">Edit</a>
+  <%= link_to 'Edit', edit_task_path, :class => "btn btn-info"  %>
 </div>
   <h1><%= @task.description %></h1>
 </div>
