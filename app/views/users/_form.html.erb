@@ -49,8 +49,8 @@
     <div class="col-md-offset-2 col-md-4">
       <%= f.submit @submit_name, :class => 'btn btn-primary'%>
       <%= link_to 'cancel', users_path, class: 'btn btn-default'%>
-      <% if @user.first_name != nil %>
-      <%= link_to 'Destroy', user_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+      <% if @user.id != nil %>
+      <%= link_to 'Delete', user_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
       <% end %>
     </div>
   </div>
