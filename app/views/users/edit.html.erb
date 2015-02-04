@@ -1,2 +1,11 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="page-header">
+<h1>Edit User</h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Users", users_path %></li>
+  <li><%= link_to @user.first_name, @user %></li>
+  <li class="active">Edit User</li>
+</ol>
+
+<%= render 'form' %>

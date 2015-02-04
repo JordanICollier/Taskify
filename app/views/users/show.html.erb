@@ -1,2 +1,15 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="page-header">
+  <div class="pull-right  ">
+  <%= link_to 'Edit', edit_user_path, :class => "btn btn-info"  %>
+</div>
+  <h1><%= @user.full_name %></h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><a href="/users">users</a></li>
+  <li class="active"><%= @user.first_name %></li>
+</ol>
+
+<div>
+  <%= @user.email %>
+</div>
