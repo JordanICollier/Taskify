@@ -10,8 +10,11 @@
   <li class="active"><%= @task.description %></li>
 </ol>
 
-<div>
-  <strong> Due on:
+<dl class="dl-horizontal">
+  <dt><strong> Due on:</dt>
   </strong>
-  <%= @task.due_date.to_s.gsub('-','/') %>
-</div>
+  <dd><%= @task.due_date.to_s.gsub('-','/') %></dd>
+  <dt><strong> Completed:</dt>
+  </strong>
+  <dd><%= @task.complete ? 'Yes' : 'No' %></dd>
+</dl>
