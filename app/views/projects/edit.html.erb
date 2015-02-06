@@ -1,0 +1,11 @@
+<div class="page-header">
+<h1>Edit project</h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to "projects", projects_path %></li>
+  <li><%= link_to @project.name, @project %></li>
+  <li class="active">Edit project</li>
+</ol>
+
+<%= render 'form' %>

@@ -1,0 +1,35 @@
+<%= form_for(@project, html: {:class => "form-horizontal"}) do |f| %>
+  <% if @project.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+    <ul>
+      <% @project.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :name, :class => 'control-label col-md-2' %>
+
+      <div class='form-controls col-md-4'>
+        <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-4">
+      <%= f.submit @submit_name, :class => 'btn btn-primary'%>
+      <% if @project.id != nil %>
+      <%= link_to 'Delete', project_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+      <% end %>
+      <%= link_to 'cancel', projects_path, class: 'btn btn-default'%>
+
+    </div>
+  </div>
+
+  <% end %>
