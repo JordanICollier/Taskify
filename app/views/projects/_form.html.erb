@@ -24,9 +24,7 @@
   <div class="form-group">
     <div class="col-md-offset-2 col-md-4">
       <%= f.submit @submit_name, :class => 'btn btn-primary'%>
-      <% if @project.id != nil %>
-      <%= link_to 'Delete', project_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
-      <% end %>
+    
       <%= link_to 'cancel', projects_path, class: 'btn btn-default'%>
 
     </div>
