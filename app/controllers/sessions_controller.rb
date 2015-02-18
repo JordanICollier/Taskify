@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # session.clear
-    # redirect_to root_path, notice: "We're sorry to see you go!"
+    session.clear
+    redirect_to root_path, notice: "We're sorry to see you go!"
   end
 
 end
