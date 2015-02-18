@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, notice: 'Welcome back, stranger!'
     else
-      @user.errors[:base] << "Invalid email / password"
-      render :new
+      redirect_to login_path, alert: "Username / password combination is invalid"
     end
   end
 
