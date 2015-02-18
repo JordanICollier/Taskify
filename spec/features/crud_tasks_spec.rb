@@ -1,53 +1,32 @@
 require 'rails_helper'
 
-describe 'Users should be able to crud tasks' do
+describe 'Users can CRUD tasks' do
 
-  before :each do
-    visit '/tasks'
-    expect(page).to have_content "Due on"
+ before :each do
+   @task = Task.create(description: 'Task hard bro', due_date: '08-19-2015', complete: false)
+   visit "/tasks"
+   expect(page).to have_content 'Task hard bro'
+ end
 
-    #  howard = Student.create!(name: 'Howard', email: 'howard@muffins.com', password: 'password')
-    #  aca_elite = Club.create!(name: 'Aca-Elite')
-    #  jazz_hands = Club.create!(name: 'Jazz Hands')
-    #  Participation.create!(student: howard, club: aca_elite, leader: false)
-    #  visit "/login"
-    #  fill_in "Email", with: "howard@muffins.com"
-    #  fill_in "Password", with: "password"
-    #  click_button "Login!"
-    #  expect(page).to have_content "stranger"
-    it "can create a task"
-    click_button "New Task"
-    expect(page).to have_content "Description"
-    fill_in "Description", with: "build stuff"
-    click_button "Create Task"
-    expect(page).to have_content "build stuff"  
-  end
+ it "user can create task" do
+   click_on 'New Task'
+   expect(page).to have_content 'Description'
+   fill_in "Description", with: 'Pass the test'
+   click_button "Create Task"
+   expect(page).to have_content 'Task was successfully created.'
+ end
 
-  #  it "can creat a task" do
-  #   #  click_on "My Clubs"
-  #   #  expect(page).to have_content "Aca-Elite"
-  #  end
-  #
-  #  it "see 403 for club don't participate in" do
-  #    # aca_elite = Club.create!(name: 'Aca-Elite')
-  #    # jazz_hands = Club.create!(name: 'Jazz Hands')
-  #    # visit '/clubs/1'
-  #    # expect(page).to have_content "aca-access"
-  #  end
-  #
-  # end
+ it 'user can edit a task' do
+   visit "/tasks"
+   click_on 'Edit'
+   click_on 'Update Task'
+   expect(page).to have_content 'Task was successfully updated.'
+ end
 
-  # before :each do
-  #   @my_team = Team.create(name: 'pizza and the woofers')
-  #   visit "teams/#{@my_team.id}/players/new"
-  # end
-  #
-  # it "successfully adds a player" do
-  #   expect(page).to have_content @my_team.name
-  # end
-  #
-  # it "adds a player with a name" do
-  #   fill_in "Name", with: "Puggeroni"
-  #   click_button "Create Player"
-  #   expect(page).to have_content "Puggeroni"
+ it 'user can delete a task' do
+   visit "/tasks"
+   click_on 'Destroy'
+   expect(page).to have_content 'Task was successfully destroyed.'
+ end
+
 end

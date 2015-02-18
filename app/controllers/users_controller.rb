@@ -11,13 +11,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @submit_name = "Create Task"
+    @submit_name = "Create User"
 
   end
 
   def edit
     @user = User.find(params[:id])
-    @submit_name = "Update Task"
+    @submit_name = "Update User"
   end
 
   def destroy
