@@ -3,6 +3,15 @@ require 'rails_helper'
 describe 'Users can CRUD tasks' do
 
  before :each do
+    visit "/"
+    click_on 'Sign Up'
+    fill_in "First name", with: 'John'
+    fill_in "Last name", with: 'Doe'
+    fill_in "Email", with: 'j@gmail.com'
+    fill_in "Password", with: 'password'
+    fill_in "Password confirmation", with: 'password'
+    click_button "Sign Up"
+
    @task = Task.create(description: 'Task hard bro', due_date: '08-19-2015', complete: false)
    visit "/tasks"
    expect(page).to have_content 'Task hard bro'
