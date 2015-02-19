@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :tasks, :users, :projects
+  resources :tasks
+  resources :users, only: [:edit, :show, :index]
+  resources :projects
   resources :registrations, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.

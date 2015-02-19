@@ -3,6 +3,11 @@
   <div class="well">
     <h2>Log In</h2>
     <%= form_tag login_path do %>
+    <% if flash[:login_alert]%>
+    <div class="alert alert-danger" >
+    <%= flash[:login_alert]  %>
+  </div>
+    <% end %>
     <div class="form-group">
       <%= label_tag :email %>
       <%= email_field_tag :email, nil, class: "form-control" %>
