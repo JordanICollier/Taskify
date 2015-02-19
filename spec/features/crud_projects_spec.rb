@@ -3,6 +3,17 @@ require 'rails_helper'
 describe 'Users can CRUD tasks' do
 
  before :each do
+    visit "/"
+    click_on 'Sign Up'
+    fill_in "First name", with: 'John'
+    fill_in "Last name", with: 'Doe'
+    fill_in "Email", with: 'j@gmail.com'
+    fill_in "Password", with: 'password'
+    fill_in "Password confirmation", with: 'password'
+    click_button "Sign Up"
+    expect(page).to have_content 'User was successfully created.'
+    click_on "Sign Out"
+
    @User = Project.create(name: "test project")
    visit "/projects"
    expect(page).to have_content 'test project'
