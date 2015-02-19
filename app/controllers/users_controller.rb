@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @submit_name = "Create User"
-
   end
 
   def edit
