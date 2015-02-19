@@ -1,31 +1,9 @@
-class UsersController < ApplicationController
-  
-
-  def index
-    @users = User.all
-    @full
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
+class RegistrationsController < ApplicationController
 
   def new
     @user = User.new
     @submit_name = "Create User"
 
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    @submit_name = "Update User"
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    if @user.destroy
-      redirect_to users_path, notice: 'User was successfully deleted.'
-    end
   end
 
   def create
@@ -38,20 +16,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
+  def destroy
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to users_path, notice: 'User was successfully updated.'
-    else
-      render :new
+    if @user.destroy
+      redirect_to users_path, notice: 'User was successfully deleted.'
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @task = User.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

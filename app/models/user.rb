@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   end
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, :password, presence: true
+  
   has_secure_password
 end
