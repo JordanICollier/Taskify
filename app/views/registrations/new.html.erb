@@ -1,32 +1,33 @@
 <div class="row">
-       <div class="col-md-4 col-md-offset-4">
-        <div class="well">
-           <h2>Sign Up for gCamp</h2>
-           <%= form_for @registration, url: registrations_path do |f| %>
-           <div class="form-group">
-             <%= f.label :first_name %>
-             <%= f.text_field :first_name, class: "form-control" %>
-           </div>
-           <div class="form-group">
-             <%= f.label :last_name %>
-             <%= f.text_field :last_name, class: "form-control" %>
-           </div>
-           <div class="form-group">
-             <%= f.label :email %>
-             <%= f.email_field :email, class: "form-control" %>
-           </div>
-           <div class="form-group">
-             <%= f.label :password %>
-             <%= f.password_field :password, class: 'form-control' %>
-           </div>
-           <div class="form-group">
-             <%= f.label :password_confirmation %>
-             <%= f.password_field :password_confirmation, class: 'form-control' %>
-           </div>
-             <div class="form-group">
-             <%= f.submit 'Sign Up', class: "btn btn-primary" %>
-           </div>
-           <% end %>
-         </div>
-       </div>
-     </div>
+  <%= render "shared/error", object: @registration, error_type: "user" %>
+  <div class="col-md-4 col-md-offset-4">
+    <div class="well">
+      <h2>Sign Up for gCamp</h2>
+      <%= form_for @registration, url: registrations_path do |f| %>
+      <div class="form-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Sign Up', class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
