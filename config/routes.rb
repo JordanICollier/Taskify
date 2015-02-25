@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :tasks
-  resources :users, only: [:edit, :show, :index]
+  resources :users, except: [:create]
   resources :projects
   resources :registrations, only: [:new, :create]
 
