@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @project = Project.find(params[:project_id])
   end
 
   # GET /tasks/1

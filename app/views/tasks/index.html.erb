@@ -5,6 +5,13 @@
 <h1>Tasks</h1>
 </div>
 
+<ol class="breadcrumb">
+  <li><a href="/projects">projects</a></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li>Tasks</li>
+
+</ol>
+
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -16,7 +23,7 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @project.tasks.each do |task| %>
       <tr>
         <td>
         <%= task.description%>
