@@ -16,6 +16,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @project = Project.find(params[:project_id])
     @submit_name = "Create Task"
   end
 
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       if @task.save
