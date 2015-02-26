@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :tasks
   resources :users, except: [:create]
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
   resources :registrations, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
