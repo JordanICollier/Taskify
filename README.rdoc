@@ -1,3 +1,0 @@
-== README
-
-[this is on Heroku](https://glacial-crag-3678.herokuapp.com/)
