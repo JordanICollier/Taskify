@@ -19,15 +19,15 @@
     <% @tasks.each do |task| %>
       <tr>
         <td>
-        <%= link_to task.description, project_task_path(task.project, task) %>
+        <%= task.description%>
         </td>
         <td>
           <%= task.date %>
         </td>
         <td class="text-right">
-        <%= link_to 'Edit', edit_project_task_path(task.project), :class => "btn btn-info"  %>
+        <%# link_to 'Edit', edit_project_task_path(task.project), :class => "btn btn-info"  %>
 
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+        <%# link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
         </td>
       </tr>
     <% end %>
