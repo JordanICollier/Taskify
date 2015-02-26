@@ -31,9 +31,9 @@
         <td><%= task.complete %></td>
         <td><%= task.date %></td>
         <td class="text-right">
-        <%# link_to 'Edit', edit_project_task_path(task.project), :class => "btn btn-info"  %>
-
-        <%# link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+          <%= link_to 'Show', project_task_path(task.project, task), :class => "btn btn-success"  %>
+        <%= link_to 'Edit', edit_project_task_path(task.project, task), :class => "btn btn-info"  %>
+        <%= link_to 'Destroy', project_task_path(task.project, task), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
         </td>
       </tr>
     <% end %>

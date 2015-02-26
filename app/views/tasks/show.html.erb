@@ -1,13 +1,15 @@
 <div class="page-header">
   <div class="pull-right  ">
-  <%= link_to 'Edit', edit_task_path, :class => "btn btn-info"  %>
+  <%= link_to 'Edit', edit_project_task_path, :class => "btn btn-info"  %>
 </div>
   <h1><%= @task.description %></h1>
 </div>
 
 <ol class="breadcrumb">
-  <li><a href="/tasks">Tasks</a></li>
-  <li class="active"><%= @task.description %></li>
+  <li><a href="/projects">projects</a></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li><%= link_to "Tasks", project_tasks_path(@project) %></li>
+  <li><%= @task.description %></li>
 </ol>
 
 <dl class="dl-horizontal">
