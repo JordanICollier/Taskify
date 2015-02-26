@@ -24,6 +24,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @project = Project.find(params[:project_id])
     @submit_name = "Update Task"
   end
 
