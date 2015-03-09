@@ -1,6 +1,7 @@
 class Membership < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
+  validates :user_id, presence: true
 
   enum role: {member: 0, owner: 1}
 
