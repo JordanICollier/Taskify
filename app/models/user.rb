@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   end
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, presence: true
+  has_many :memberships
   has_many :projects, through: :memberships
 
   has_secure_password
