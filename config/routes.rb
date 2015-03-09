@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, except: [:create]
   resources :projects do
+    resources :memberships
     resources :tasks
   end
   resources :registrations, only: [:new, :create]
