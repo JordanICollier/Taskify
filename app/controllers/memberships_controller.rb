@@ -33,7 +33,12 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-
+    @project = Project.find(params[:project_id])
+    @membership = Membership.find(params[:id])
+    @membership.destroy
+    if @membership.destroy
+      redirect_to project_memberships_path(@project), notice: 'User was successfully deleted.'
+    end
   end
 
 private
