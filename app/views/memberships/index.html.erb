@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1><%= @project.name %></h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><a href="/projects">Projects</a></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li>Memberships</li>
+</ol>
+
+<div class="well form-inline">
+  <%= form_for [@project, @membership] do |f|  %>
+  <%= f.collection_select :user_id, User.all, :id, :full_name, {include_blank: false}, class: "form-control" %>
+  <%= f.collection_select :role, Membership.capital_roles, :last, :first, {include_blank: false}, class: "form-control" %>
+  <%= f.submit %>
+  <% end %>
+</div>
