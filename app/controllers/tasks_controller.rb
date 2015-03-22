@@ -2,19 +2,18 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
 
-  # GET /tasks.json
+
   def index
     @tasks = Task.all
     @project = Project.find(params[:project_id])
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+
   def show
     @project = Project.find(params[:project_id])
   end
 
-  # GET /tasks/new
+  
   def new
     @task = Task.new
     @project = Project.find(params[:project_id])
