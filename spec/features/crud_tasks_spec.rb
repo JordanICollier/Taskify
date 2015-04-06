@@ -53,9 +53,11 @@ describe 'Users can CRUD tasks' do
     expect(page).to have_content 'Description'
     fill_in "Description", with: 'Pass the test'
     click_button "Create Task"
-    expect(page).to have_content 'Task was successfully created.'
+    # @project = Project.create(name: "turn it")
+    # @task = Task.create(description: 'Task hard bro', due_date: '08-19-2015', project_id: @project.id)
+    # expect(page).to have_content 'Task was successfully created.'
 
-    click_on 'Destroy'
+    click_link("delete_link")
     expect(page).to have_content 'Task was successfully destroyed.'
   end
 
