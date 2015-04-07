@@ -11,11 +11,19 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+
     if @project.save
-      redirect_to @project, notice: "Project was successfully created"
+      if @project.memberships.create(user: current_user, role: :owner)
+        redirect_to @project, notice: "Project was successfully created"
+      else
+        @project.destroy
+        render :new
+      end
     else
       render :new
     end
+    membership = @project.memberships.new(user: current_user)
+    membership.save
   end
 
   def show
