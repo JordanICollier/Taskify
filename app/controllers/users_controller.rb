@@ -1,6 +1,6 @@
 class UsersController < SecretsController
   before_action :authenticate, except: [:create]
-
+  before_action :set_collaborators, only: [:index, :show]
   def index
     @users = User.all
     @full
@@ -55,6 +55,10 @@ class UsersController < SecretsController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def set_collaborators
+      @collaborators = current_user.projects.flat_map{|project| project.users}
     end
 
 end
