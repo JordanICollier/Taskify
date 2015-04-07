@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, :alert => 'You must be logged in to visit that page.' unless current_user
   end
 
-  helper_method :current_user
+  def vendor_page?
+    self.class.superclass != SecretsController
+  end
+
+  helper_method :current_user, :vendor_page?
 
 end

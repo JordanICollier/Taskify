@@ -15,6 +15,19 @@
           %span.icon-bar
           %span.icon-bar
         = link_to 'gCamp', root_path, class: 'navbar-brand'
+        -unless vendor_page?
+          %ul.nav.navbar-nav
+            %li.dropdown
+              = link_to projects_path, class: 'dropdown-toggle',
+                data: {toggle: 'dropdown'}, role: 'button', 'aria-exapnded': 'false' do
+                Projects
+                %span.caret
+              %ul.dropdown-menu{role: 'menu'}
+                - current_user.projects.each do |project|
+                  %li= link_to project.name, project_path(project)
+                %li.divider
+                %li= link_to "New Project", new_project_path
+            %li= link_to "Users", users_path
       #navbar.navbar-collapse.collapse
         %ul.nav.navbar-nav.navbar-right
           - if current_user
@@ -36,26 +49,22 @@
     = yield
     %footer
       .row
-        .col-md-6
-          = link_to "About", about_path
-          |
-          = link_to "Terms", terms_path
-          |
-          = link_to "Faq", faq_path
-          |
-          = link_to "Users", users_path
-          |
-          = link_to "Projects", projects_path
-        .col-md-6.text-right
-          %a{:href => "https://www.linkedin.com/in/jordanicollier"}
-            = image_tag"linked.jpg", class: "img-footer"
-          %a{:href => "https://github.com/JordanCollier"}
-            = image_tag"github.png", class: "img-footer"
-          %a{:href => "https://twitter.com/JordanICollier"}
-            = image_tag"twitter.png", class: "img-footer"
-          %a{:href => "https://students.gschool.it/students/206"}
-            = image_tag "galvanize.png", class: "img-footer"
-
+        - if vendor_page?
+          .col-md-6
+            = render "shared/footer"
+          .col-md-6.text-right
+            - if vendor_page?
+              %a{:href => "https://www.linkedin.com/in/jordanicollier"}
+                = image_tag"linked.jpg", class: "img-footer"
+              %a{:href => "https://github.com/JordanCollier"}
+                = image_tag"github.png", class: "img-footer"
+              %a{:href => "https://twitter.com/JordanICollier"}
+                = image_tag"twitter.png", class: "img-footer"
+              %a{:href => "https://students.gschool.it/students/206"}
+                = image_tag "galvanize.png", class: "img-footer"
+        - else
+          .col-md-12.text-center
+            = render "shared/footer"
 
 
   %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
