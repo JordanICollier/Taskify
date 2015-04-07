@@ -2,7 +2,7 @@ class ProjectsController < SecretsController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def new
@@ -51,6 +51,10 @@ class ProjectsController < SecretsController
 
     def set_project
       @project = Project.find(params[:id])
+      unless @project and @project.users.include? current_user
+        redirect_to projects_path,
+        alert: "You do not have access to that project"
+      end
     end
 
     def project_params
