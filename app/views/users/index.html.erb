@@ -26,9 +26,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.full_name, user  %></td>
-        <td><%= mail_to(user.email) %></td>
-        <td class="text-right">
-        </td>
+        <td><% if user == current_user %><%= mail_to(user.email) %><% end %></td>
 
         <td class="text-right">
         <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-info"  %>
