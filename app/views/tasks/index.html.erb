@@ -27,7 +27,7 @@
   <tbody>
     <% @project.tasks.each do |task| %>
       <tr>
-        <td><%= task.description%></td>
+        <td><%= task.description%> <div class="badge"><%= task.comments.count  %></div></td>
         <td><%= task.complete %></td>
         <td><%= task.date %></td>
         <td class="text-right">
