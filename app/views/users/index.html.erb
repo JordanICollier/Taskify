@@ -29,9 +29,11 @@
         <td><% if user == current_user or @collaborators.include? user %><%= mail_to(user.email) %><% end %></td>
 
         <td class="text-right">
+          <% if user == current_user %>
         <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-info"  %>
-
+        
         <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+        <% end %>
         </td>
       </tr>
     <% end %>

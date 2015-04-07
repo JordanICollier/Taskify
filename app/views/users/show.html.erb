@@ -1,6 +1,8 @@
 <div class="page-header">
   <div class="pull-right  ">
+    <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path, :class => "btn btn-info"  %>
+  <% end %>
 </div>
   <h1><%= @user.full_name %></h1>
 </div>

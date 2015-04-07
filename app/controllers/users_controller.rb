@@ -1,13 +1,15 @@
 class UsersController < SecretsController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, except: [:create]
   before_action :set_collaborators, only: [:index, :show]
+  before_action :assert_current_user, only: [:edit, :update, :destroy]
   def index
     @users = User.all
     @full
   end
 
   def show
-    @user = User.find(params[:id])
+
   end
 
   # def new
@@ -16,13 +18,16 @@ class UsersController < SecretsController
   # end
 
   def edit
-    @user = User.find(params[:id])
+
     @submit_name = "Update User"
   end
 
   def destroy
-    @user = User.find(params[:id])
-    if @user.destroy
+    @user.destroy
+    if @user.id == current_user.id
+      session[:user_id] = nil
+      redirect_to root_path, notice: "User was successfully deleted."
+    else
       redirect_to users_path, notice: 'User was successfully deleted.'
     end
   end
@@ -38,7 +43,6 @@ class UsersController < SecretsController
   # end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
     else
@@ -49,7 +53,7 @@ class UsersController < SecretsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @task = User.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -59,6 +63,12 @@ class UsersController < SecretsController
 
     def set_collaborators
       @collaborators = current_user.projects.flat_map{|project| project.users}
+    end
+
+    def assert_current_user
+      if current_user != @user
+        render file: "public/404", layout: false, status: :not_found
+      end
     end
 
 end
