@@ -8,10 +8,16 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to projects_path, notice: 'Welcome back, stranger!'
+      if session[:return_to]
+        redirect_to session[:return_to], notice: 'Welcome back, stranger!'
+        session[:return_to] = nil
+      else
+        redirect_to projects_path, notice: 'Welcome back, stranger!'
+      end
     else
       flash[:login_alert] = "Username / password combination is invalid"
       redirect_to login_path
+
     end
   end
 
