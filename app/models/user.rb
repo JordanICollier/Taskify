@@ -9,4 +9,11 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   has_secure_password
+
+  def owns_project?(project)
+    project.memberships.find_by(
+      role: Membership.roles[:owner],
+      user_id: id
+    )
+  end
 end

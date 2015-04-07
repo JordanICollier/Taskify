@@ -1,7 +1,9 @@
 <div class="page-header">
-  <div class="pull-right  ">
-  <%= link_to 'Edit', edit_project_path, :class => "btn btn-info"  %>
-</div>
+  <% if current_user.owns_project?(@project) %>
+    <div class="pull-right  ">
+      <%= link_to 'Edit', edit_project_path, :class => "btn btn-info"  %>
+    </div>
+  <% end %>
   <h1><%= @project.name %></h1>
 </div>
 
@@ -16,7 +18,7 @@
   <dt><strong>Name:</strong></dt>
   <dd><%# @project.name %></dd>
 </dl> -->
-
+<% if current_user.owns_project?(@project) %>
 <div class="well">
   <h4>Delete Projects</h4>
   <p>
@@ -25,3 +27,4 @@
   <%= link_to 'Delete', project_path, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 
 </div>
+<% end %>

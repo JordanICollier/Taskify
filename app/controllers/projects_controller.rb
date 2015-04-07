@@ -1,5 +1,6 @@
 class ProjectsController < SecretsController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :assert_owner, only: [:edit, :destroy, :update]
   def index
     @projects = current_user.projects
   end
@@ -29,6 +30,7 @@ class ProjectsController < SecretsController
   end
 
   def edit
+
   end
 
     def update
@@ -59,4 +61,11 @@ class ProjectsController < SecretsController
     def project_params
       params.require(:project).permit(:name)
     end
+
+    def assert_owner
+      unless current_user.owns_project?(@project)
+        redirect_to project_path(@project), alert: "You do not have access"
+      end
+    end
+
   end
