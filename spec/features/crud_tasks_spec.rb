@@ -3,15 +3,16 @@ require 'rails_helper'
 describe 'Users can CRUD tasks' do
 
   before :each do
-    #  @task = Task.create(description: 'Task hard bro', due_date: '08-19-2015', complete: false)
+
+    User.create(first_name: "Jordan", last_name: "Collier", email: "jordanicollier@gmail.com", password: "password", role: 1)
     visit "/"
-    click_on 'Sign Up'
-    fill_in "First name", with: 'John'
-    fill_in "Last name", with: 'Doe'
-    fill_in "Email", with: 'j@gmail.com'
+    click_on 'Sign In'
+    fill_in "Email", with: 'jordanicollier@gmail.com'
     fill_in "Password", with: 'password'
-    fill_in "Password confirmation", with: 'password'
-    click_button "Sign Up"
+    click_on "Login!"
+
+    # Project.create(name: "test project")
+    # visit "/projects"
 
 
     click_on "Projects"
@@ -24,7 +25,6 @@ describe 'Users can CRUD tasks' do
     fill_in "Name", with: 'turn it'
     click_button "Create Project"
     expect(page).to have_content 'Project was successfully created'
-    click_on '0 Tasks'
 
   end
 
@@ -53,10 +53,6 @@ describe 'Users can CRUD tasks' do
     expect(page).to have_content 'Description'
     fill_in "Description", with: 'Pass the test'
     click_button "Create Task"
-    # @project = Project.create(name: "turn it")
-    # @task = Task.create(description: 'Task hard bro', due_date: '08-19-2015', project_id: @project.id)
-    # expect(page).to have_content 'Task was successfully created.'
-
     click_link("delete_link")
     expect(page).to have_content 'Task was successfully destroyed.'
   end

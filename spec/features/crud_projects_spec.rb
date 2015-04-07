@@ -3,20 +3,16 @@ require 'rails_helper'
 describe 'Users can CRUD tasks' do
 
  before :each do
-    visit "/"
-    click_on 'Sign Up'
-    fill_in "First name", with: 'John'
-    fill_in "Last name", with: 'Doe'
-    fill_in "Email", with: 'j@gmail.com'
-    fill_in "Password", with: 'password'
-    fill_in "Password confirmation", with: 'password'
-    click_button "Sign Up"
-    expect(page).to have_content 'User was successfully created.'
-    click_on "Sign Out"
 
-   @User = Project.create(name: "test project")
-   visit "/projects"
-   expect(page).to have_content 'test project'
+    User.create(first_name: "Jordan", last_name: "Collier", email: "jordanicollier@gmail.com", password: "password", role: 1)
+    visit "/"
+    click_on 'Sign In'
+    fill_in "Email", with: 'jordanicollier@gmail.com'
+    fill_in "Password", with: 'password'
+    click_on "Login!"
+
+   Project.create(name: "test project")
+    visit "/projects"
  end
 
  it "can create a project" do
@@ -36,20 +32,9 @@ describe 'Users can CRUD tasks' do
    expect(page).to have_content 'Project was successfully updated.'
  end
 
- it 'can delete a user' do
-   click_on 'Destroy'
-   expect(page).to have_content 'Project was successfully deleted.'
+ it "can delete a project" do
+  click_on "Destroy"
+  expect(page).to have_content 'Project was successfully deleted.'
  end
- # it 'can edit a user' do
- #   click_on 'Edit'
- #   click_on 'Update User'
- #   expect(page).to have_content 'User was successfully updated.'
- # end
- #
- # it 'can delete a user' do
- #   click_on 'Destroy'
- #   expect(page).to have_content 'User was successfully deleted.'
- # end
-
 
 end
