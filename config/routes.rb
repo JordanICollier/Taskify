@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :users, except: [:create]
   resources :projects do
     resources :memberships
-    resources :tasks
+    resources :tasks do
+      resources :comments, only: [:create]
+    end
   end
   resources :registrations, only: [:new, :create]
 
