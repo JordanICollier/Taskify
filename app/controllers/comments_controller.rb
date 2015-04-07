@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < SecretsController
 
   def create
     @project = Project.find(params[:project_id])

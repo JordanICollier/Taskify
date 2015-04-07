@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < SecretsController
   before_action :authenticate, except: [:create]
 
   def index

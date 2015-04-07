@@ -1,4 +1,4 @@
-class MembershipsController < ApplicationController
+class MembershipsController < SecretsController
 
   def index
     @project = Project.find(params[:project_id])

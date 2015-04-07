@@ -1,6 +1,5 @@
-class TasksController < ApplicationController
+class TasksController < SecretsController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate
 
 
   def index
