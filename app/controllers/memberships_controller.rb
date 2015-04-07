@@ -2,9 +2,8 @@ class MembershipsController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    @memberships = Membership.all
+    @memberships = @project.memberships
     @membership = Membership.new
-
   end
 
   def new
@@ -27,7 +26,10 @@ class MembershipsController < ApplicationController
   def update
     @project = Project.find(params[:project_id])
     @membership = Membership.find(params[:id])
-    if @membership.update(membership_params)
+    if @membership.last_owner?
+      flash.now[:alert] = "Projects must have at least one owner."
+      render :index
+    elsif @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
     end
   end

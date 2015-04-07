@@ -9,4 +9,12 @@ class Membership < ActiveRecord::Base
     roles.map{|name, value| [name.capitalize, name]}
   end
 
+  def last_owner?
+    owner_count = Membership.where(
+    role: Membership.roles[:owner],
+    project: project
+    ).count
+    role == "owner" and owner_count < 2
+  end
+
 end
