@@ -14,7 +14,7 @@ class ProjectsController < SecretsController
 
     if @project.save
       if @project.memberships.create(user: current_user, role: :owner)
-        redirect_to @project, notice: "Project was successfully created"
+        redirect_to project_tasks_path(@project), notice: "Project was successfully created"
       else
         @project.destroy
         render :new
