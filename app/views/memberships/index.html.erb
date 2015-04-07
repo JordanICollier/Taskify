@@ -27,10 +27,12 @@
     <p><%= link_to "#{membership.user.full_name}", user_path(membership.user) %>
       <%= f.collection_select :role, Membership.capital_roles, :last, :first, {include_blank: false}, class: "form-control" %>
       <%= f.submit 'Update' %>
+      <% if membership.user == current_user %>
       <% if membership.last_owner? %>
         You are the last owner
       <% else %>
         <%= link_to '', project_membership_path(@project, membership), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove" %>
+      <% end %>
       <% end %>
       <% end %>
 
