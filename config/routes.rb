@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, except: [:create]
+  resources :users
   resources :projects do
     resources :memberships
     resources :tasks do

@@ -82,7 +82,7 @@ class TasksController < SecretsController
 
     def set_project
       @project = Project.find(params[:project_id])
-      unless @project and @project.users.include? current_user
+      unless (@project and @project.users.include? current_user or current_user.admin?)
         redirect_to projects_path,
         alert: "You do not have access to that project"
       end

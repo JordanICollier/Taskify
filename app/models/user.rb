@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :projects, through: :memberships
   has_many :comments, dependent: :destroy
+  enum role: {normal: 0, admin: 1}
 
   has_secure_password
 
@@ -14,6 +15,27 @@ class User < ActiveRecord::Base
     project.memberships.find_by(
       role: Membership.roles[:owner],
       user_id: id
-    )
+    ) or admin?
   end
+
+  def projects
+    if admin?
+      Project.all
+    else
+      super
+    end
+  end
+
+  def is_admin
+    admin?
+  end
+
+  def is_admin=(val)
+    if val
+      self.role = User.roles[:admin]
+    else
+      self.role = User.roles[:normal]
+    end
+  end
+
 end

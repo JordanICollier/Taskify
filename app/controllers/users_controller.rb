@@ -3,6 +3,7 @@ class UsersController < SecretsController
   before_action :authenticate, except: [:create]
   before_action :set_collaborators, only: [:index, :show]
   before_action :assert_current_user, only: [:edit, :update, :destroy]
+  before_action :assert_admin, only: [:new, :create]
   def index
     @users = User.all
     @full
@@ -12,13 +13,12 @@ class UsersController < SecretsController
 
   end
 
-  # def new
-  #   @user = User.new
-  #   @submit_name = "Create User"
-  # end
+  def new
+    @user = User.new
+    @submit_name = "Create User"
+  end
 
   def edit
-
     @submit_name = "Update User"
   end
 
@@ -32,15 +32,15 @@ class UsersController < SecretsController
     end
   end
 
-  # def create
-  #   @user = User.new(user_params)
-  #
-  #   if @user.save
-  #     redirect_to users_path, notice: 'User was successfully created.'
-  #   else
-  #     render :new
-  #   end
-  # end
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to users_path, notice: 'User was successfully created.'
+    else
+      render :new
+    end
+  end
 
   def update
     if @user.update(user_params)
@@ -58,7 +58,11 @@ class UsersController < SecretsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      if current_user.admin?
+        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :is_admin)
+      else
+        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      end
     end
 
     def set_collaborators
@@ -66,7 +70,13 @@ class UsersController < SecretsController
     end
 
     def assert_current_user
-      if current_user != @user
+      unless current_user == @user or current_user.admin?
+        render file: "public/404", layout: false, status: :not_found
+      end
+    end
+
+    def assert_admin
+      unless current_user.admin?
         render file: "public/404", layout: false, status: :not_found
       end
     end
