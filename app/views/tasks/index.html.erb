@@ -27,11 +27,10 @@
   <tbody>
     <% @project.tasks.each do |task| %>
       <tr>
-        <td><%= task.description%> <div class="badge"><%= task.comments.count  %></div></td>
+        <td><%= link_to task.description, project_task_path(task.project, task)%> <div class="badge"><%= task.comments.count  %></div></td>
         <td><%= task.complete %></td>
         <td><%= task.date %></td>
         <td class="text-right">
-        <%= link_to 'Show', project_task_path(task.project, task), :class => "btn btn-success"  %>
         <%= link_to 'Edit', edit_project_task_path(task.project, task), :class => "btn btn-info"  %>
         <%= link_to '', project_task_path(task.project, task),  id: "delete_link", method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-remove" %>
         </td>
