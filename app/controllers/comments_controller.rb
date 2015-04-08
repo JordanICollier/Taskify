@@ -9,8 +9,8 @@ class CommentsController < SecretsController
     if @comment.save
       redirect_to :back, notice: "Comment was successfully posted!"
     else
-      flash.now[:alert] = "There was a problem posting your comment."
-      render "tasks/show"
+      # flash.now[:alert] = "There was a problem posting your comment."
+      redirect_to :back
     end
   end
 
