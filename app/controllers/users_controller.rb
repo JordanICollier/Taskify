@@ -23,6 +23,9 @@ class UsersController < SecretsController
   end
 
   def destroy
+    @user.nilify_comments
+    binding.pry
+
     @user.destroy
     if @user.id == current_user.id
       session[:user_id] = nil

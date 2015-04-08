@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true
   has_many :memberships, dependent: :destroy
   has_many :projects, through: :memberships
-  has_many :comments, dependent: :destroy
+  has_many :comments
   enum role: {normal: 0, admin: 1}
 
   has_secure_password
@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     else
       self.role = User.roles[:normal]
     end
+  end
+
+  def nilify_comments
+    comments.each {|comment| comment.update(user_id: nil)}
   end
 
 end

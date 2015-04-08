@@ -26,7 +26,11 @@
     <% @task.comments.each do |comment| %>
     <div class="row">
     <div class="col-md-3">
+      <% if comment.user != nil %>
       <div><%= link_to comment.user.full_name, user_path(comment.user) %></div>
+      <% else %>
+      <div><%= "(deleted user)" %></div>
+      <% end %>
       <div class="text-muted"><%= time_ago_in_words comment.created_at %></div>
     </div>
       <div class="col-md-9">
