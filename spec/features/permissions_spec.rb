@@ -5,6 +5,7 @@ describe "depending on the user, grants them certain permission" do
   before :each do
     User.create(first_name: "admin", last_name: "example", email: "admin@example.com", password: "password", role: 1)
     @user = User.create(first_name: "Jordan", last_name: "Collier", email: "jordanicollier@gmail.com", password: "password", role: 0)
+    @project = Project.create(name: "Admin can see this")
     visit "/login"
     fill_in "Email", with: 'jordanicollier@gmail.com'
     fill_in "Password", with: 'password'
@@ -163,7 +164,23 @@ describe "depending on the user, grants them certain permission" do
     expect(page).to_not have_content 'Is admin'
   end
 
-  it "" do
+  it "user cannot see all projects" do
+    click_on "Sign Out"
+    visit "/login"
+    fill_in "Email", with: 'jordanicollier@gmail.com'
+    fill_in "Password", with: 'password'
+    click_on 'Login!'
+    visit '/projects'
+    expect(page).to_not have_content 'Admin can see this'
+  end
 
+  it "admin can see all projects" do
+    click_on "Sign Out"
+    visit "/login"
+    fill_in "Email", with: 'admin@example.com'
+    fill_in "Password", with: 'password'
+    click_on 'Login!'
+    visit '/projects'
+    expect(page).to have_content 'Admin can see this'
   end
 end
