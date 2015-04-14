@@ -46,6 +46,7 @@ describe 'Signing up/in/out as user' do
     click_button "Login!"
     expect(page).to have_content 'Welcome back, stranger!'
   end
+
   it "can sign out as a user" do
     visit "/"
     click_on 'Sign Up'

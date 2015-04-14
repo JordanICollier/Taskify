@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "depending on the user, grants them certain permission" do
 
   before :each do
-    User.create(first_name: "admin", last_name: "example", email: "user@example.com", password: "password", role: 1)
+    User.create(first_name: "admin", last_name: "example", email: "admin@example.com", password: "password", role: 1)
     @user = User.create(first_name: "Jordan", last_name: "Collier", email: "jordanicollier@gmail.com", password: "password", role: 0)
     visit "/login"
     fill_in "Email", with: 'jordanicollier@gmail.com'
@@ -102,7 +102,7 @@ describe "depending on the user, grants them certain permission" do
   it "allows admin to view the new user button" do
     click_on "Sign Out"
     visit "/login"
-    fill_in "Email", with: 'user@example.com'
+    fill_in "Email", with: 'admin@example.com'
     fill_in "Password", with: 'password'
     click_on 'Login!'
     visit '/users'
@@ -111,13 +111,13 @@ describe "depending on the user, grants them certain permission" do
 
   it "user cannot see others emails" do
     visit '/users'
-    expect(page).to_not have_content 'user@example.com'
+    expect(page).to_not have_content 'admin@example.com'
   end
 
   it "admins can see others emails" do
     click_on "Sign Out"
     visit "/login"
-    fill_in "Email", with: 'user@example.com'
+    fill_in "Email", with: 'admin@example.com'
     fill_in "Password", with: 'password'
     click_on 'Login!'
     visit '/users'
@@ -127,18 +127,43 @@ describe "depending on the user, grants them certain permission" do
   it "user cannot see other email on their showpage" do
     visit '/users'
     click_on "admin example"
-    expect(page).to_not have_content 'user@example.com'
+    expect(page).to_not have_content 'admin@example.com'
   end
 
   it "admins can see others emails" do
     click_on "Sign Out"
     visit "/login"
-    fill_in "Email", with: 'user@example.com'
+    fill_in "Email", with: 'admin@example.com'
     fill_in "Password", with: 'password'
     click_on 'Login!'
     visit '/users'
     click_on "Jordan Collier"
-    # expect(page).to have_content 'Email:'
+    expect(page).to have_content 'Email:'
   end
 
+  it "admins can see others make admin checkbox on their edit page" do
+    click_on "Sign Out"
+    visit "/login"
+    fill_in "Email", with: 'admin@example.com'
+    fill_in "Password", with: 'password'
+    click_on 'Login!'
+    visit '/users'
+    first(:link, "Edit").click
+    expect(page).to have_content 'Is admin'
+  end
+
+  it "users cannot see others make admin checkbox on their edit page" do
+    click_on "Sign Out"
+    visit "/login"
+    fill_in "Email", with: 'jordanicollier@gmail.com'
+    fill_in "Password", with: 'password'
+    click_on 'Login!'
+    visit '/users'
+    click_on "Jordan Collier"
+    expect(page).to_not have_content 'Is admin'
+  end
+
+  it "" do
+
+  end
 end
