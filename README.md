@@ -1,6 +1,6 @@
-# gCamp-Jordan-Collier
+# Taskify-Jordan-Collier
 
-[view on Heroku](https://glacial-crag-3678.herokuapp.com/)
+[view on Heroku](http://taskify-it.herokuapp.com/)
 
 To install
 
